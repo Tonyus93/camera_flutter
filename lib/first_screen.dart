@@ -12,17 +12,10 @@ class FirstScreen extends StatefulWidget {
 }
 
 class FirstScreenState extends State<FirstScreen> {
-  CameraController _controller;
-  Future<void> _initializeControllerFuture;
 
   @override
   void initState() {
     super.initState();
-  }
-
-  getAvailableCameras() async {
-    WidgetsFlutterBinding.ensureInitialized();
-    return await availableCameras();
   }
 
 
@@ -37,9 +30,8 @@ class FirstScreenState extends State<FirstScreen> {
         children: <Widget>[
           RaisedButton(
             onPressed: () {
-              Torch.turnOn();
               availableCameras().then((cameras) {
-                Navigator.push(context, MaterialPageRoute(builder: (builder) => TakePictureScreen(camera: cameras.first)));
+                Navigator.push(context, MaterialPageRoute(builder: (builder) => TakePictureScreen()));
               });
             },
             child: Text('Lunch camera'),
